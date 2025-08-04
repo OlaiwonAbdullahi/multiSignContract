@@ -1,5 +1,6 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
+const ethers = hre.ethers;
 
 describe("MultiSigWallet", function () {
   let MultiSig, wallet;
@@ -13,11 +14,10 @@ describe("MultiSigWallet", function () {
       [owner1.address, owner2.address, owner3.address],
       requiredConfirmations
     );
-    await wallet.deployed();
 
     await owner1.sendTransaction({
       to: wallet.address,
-      value: ethers.utils.parseEther("10"),
+      value: hre.ethers.utils.parseEther("10"),
     });
   });
 
