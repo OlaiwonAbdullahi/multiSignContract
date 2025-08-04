@@ -63,9 +63,10 @@ contract MultiSigWallet {
             value: _value,
             executed: false,
             confirmations: 0,
-            data: "" // Initialize data field
+            data: "" 
         }));
-        }));
+      
+        uint256 txId = transactions.length - 1;
         emit TransactionSubmitted(txId, _to, _value);
     }
     function confirmTransaction(uint256 _txId) 
@@ -128,6 +129,6 @@ contract MultiSigWallet {
         ) 
     {
         Transaction storage transaction = transactions[_txId];
-        return (transaction.to, transaction.value,transaction.data, transaction.executed, transaction.confirmations);
+        return (transaction.to, transaction.value, transaction.executed, transaction.data, transaction.confirmations);
     }
 }
